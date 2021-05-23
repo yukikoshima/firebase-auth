@@ -1,5 +1,9 @@
 # firebase-auth
 
+## 課題
+
+ログイン後、リロードするとログイン情報が保持されない。
+
 ## Build Setup
 
 ```bash
