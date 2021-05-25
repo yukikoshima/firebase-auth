@@ -1,10 +1,9 @@
-import firebase from "@/plugins/firebase";
+import firebase from "firebase";
 
 export default function({ route, store, redirect }) {
-  console.log(store.getters["firebase/getLogind"]);
   firebase.auth().onAuthStateChanged(user => {
+    console.log(app);
     if (user) {
-      // console.log("ログイン済み");
       if (route.path === "/auth/signin") {
         redirect("/");
       }
@@ -14,4 +13,19 @@ export default function({ route, store, redirect }) {
       }
     }
   });
+
+  // console.log(store.state.firebase.user.isLogind);
+
+  // if (store.state.firebase.user.isLogind) {
+  //   console.log("ログイン済み");
+  //   console.log(route.path);
+  //   if (route.path === "/auth/signin") {
+  //     redirect("/");
+  //   }
+  // } else {
+  //   console.log("ログインじゃないよ");
+  //   if (route.path !== "/auth/signin") {
+  //     redirect("/auth/signin");
+  //   }
+  // }
 }

@@ -12,13 +12,13 @@ const config = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
-  // logoutしない限りsession保持
-  firebase
-    .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => {
-      console.log("成功");
-    });
+  // logoutしない限りsession保持;
+  // firebase
+  //   .auth()
+  //   .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  //   .then(() => {
+  //     console.log("成功");
+  //   });
 }
 
 export default firebase;

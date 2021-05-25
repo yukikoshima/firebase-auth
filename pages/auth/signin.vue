@@ -30,9 +30,7 @@
             >Forgot Password</v-btn
           >
         </v-card-actions>
-        {{ $store.state.firebase.Logind }}<br />
-        {{ $store.state.firebase.userId }}<br />
-        {{ $store.state.firebase.userUid }}<br />
+        {{ $store.state.firebase.user }}<br />
       </v-card>
     </v-col>
   </v-row>

@@ -1,22 +1,22 @@
 import firebase from "@/plugins/firebase";
 
 export const state = () => ({
-  Logind: false,
-  userId: "",
-  userUid: ""
+  user: {
+    isLogind: false,
+    userId: "",
+    userUid: ""
+  }
 });
 
 export const mutations = {
   setUser(state, payload) {
-    state.Logind = payload.Logind;
-    state.userId = payload.userId;
-    state.userUid = payload.userUid;
+    state.user = payload;
   }
 };
 
 export const getters = {
-  getLogind(state) {
-    return state.Logind;
+  getUser(state) {
+    return state.user;
   }
 };
 
@@ -30,7 +30,7 @@ export const actions = {
         // Signed in
         const user = userCredential.user;
         context.commit("setUser", {
-          Logind: true,
+          isLogind: true,
           userId: user.email,
           userUid: user.uid
         });
@@ -50,7 +50,7 @@ export const actions = {
         // Sign-out successful.
         console.log("logout成功");
         context.commit("setUser", {
-          Logind: false,
+          isLogind: false,
           userId: "",
           userUid: ""
         });
@@ -59,8 +59,6 @@ export const actions = {
       .catch(error => {
         // An error happened.
         console.log("logout失敗");
-        console.log(error.code);
-        console.log(error.message);
       });
   }
 };
