@@ -30,7 +30,7 @@
             >Forgot Password</v-btn
           >
         </v-card-actions>
-        {{ $store.state.firebase.user }}<br />
+        {{ $store.state.users.user }}<br />
       </v-card>
     </v-col>
   </v-row>
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("firebase/login", {
+      this.$store.dispatch("users/login", {
         email: this.auth.email,
         password: this.auth.password
       });
