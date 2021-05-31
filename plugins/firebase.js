@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -12,13 +13,6 @@ const config = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
-  // logoutしない限りsession保持;
-  // firebase
-  //   .auth()
-  //   .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  //   .then(() => {
-  //     console.log("成功");
-  //   });
 }
 
 export default firebase;

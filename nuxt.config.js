@@ -6,7 +6,7 @@ export default {
     titleTemplate: "%s - firebase-auth",
     title: "firebase-auth",
     htmlAttrs: {
-      lang: "en"
+      lang: "ja"
     },
     meta: [
       { charset: "utf-8" },
@@ -20,7 +20,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: "~/plugins/localStorage.js", ssr: false }
+    // { src: "~/plugins/cookie-storage.js" }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

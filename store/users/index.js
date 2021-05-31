@@ -1,4 +1,5 @@
 import firebase from "@/plugins/firebase";
+import Cookies from "js-cookie";
 
 export const state = () => ({
   user: {
@@ -11,6 +12,11 @@ export const state = () => ({
 export const mutations = {
   setUser(state, payload) {
     state.user = payload;
+  },
+  setLogind(state, payload) {
+    console.log("kokoko");
+    console.log(payload.isLogind);
+    state.user.isLogind = payload.isLogind;
   }
 };
 
@@ -29,11 +35,15 @@ export const actions = {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
+        const token = user.getIdToken();
+
+        Cookies.set("auth_token", token);
         context.commit("setUser", {
           isLogind: true,
           userId: user.email,
           userUid: user.uid
         });
+
         this.$router.push("/");
       })
       .catch(error => {
@@ -48,7 +58,7 @@ export const actions = {
       .signOut()
       .then(() => {
         // Sign-out successful.
-        console.log("logout成功");
+        Cookies.remove("auth_token");
         context.commit("setUser", {
           isLogind: false,
           userId: "",
@@ -60,5 +70,8 @@ export const actions = {
         // An error happened.
         console.log("logout失敗");
       });
+  },
+  setLogind(context) {
+    context.commit("setLogind", { isLogind: true });
   }
 };
